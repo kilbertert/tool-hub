@@ -1,15 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --bg: #0a0a1a;
-  --card: #111127;
-  --border: rgba(255, 255, 255, 0.06);
+@theme {
+  --color-bg: #0a0a1a;
+  --color-card: #111127;
+  --color-border: rgba(255, 255, 255, 0.06);
 }
 
 body {
-  background: var(--bg);
+  background: var(--color-bg);
   color: #e4e4e7;
   -webkit-font-smoothing: antialiased;
 }
