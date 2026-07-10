@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const categories = [
   { name: "PDF 工具", desc: "合并、拆分、压缩、转换", href: "/pdf/merge/", count: 8 },
-  { name: "图片工具", desc: "压缩、缩放、旋转、格式转换", href: "/image/compress/", count: 4 },
-  { name: "格式转换", desc: "CSV、JSON、Base64、URL 编解码", href: "/converter/csv-to-json/", count: 6 },
+  { name: "图片工具", desc: "压缩、缩放、旋转、格式转换", href: "/image/compress/", count: 8 },
+  { name: "格式转换", desc: "CSV、JSON、Base64、哈希、密码", href: "/converter/csv-to-json/", count: 12 },
   { name: "视频工具", desc: "压缩、转码、提取音频", href: "#", soon: true },
   { name: "AI 写作", desc: "生成、改写、摘要、翻译", href: "#", soon: true },
   { name: "更多工具", desc: "每周更新", href: "#", soon: true },
@@ -25,6 +25,10 @@ const imageTools = [
   { name: "图片缩放", desc: "调整图片尺寸", href: "/image/resize/" },
   { name: "格式转换", desc: "PNG/JPG/WebP 互转", href: "/image/convert/" },
   { name: "图片旋转", desc: "旋转和翻转", href: "/image/rotate/" },
+  { name: "图片裁剪", desc: "裁剪指定区域", href: "/image/crop/" },
+  { name: "图片翻转", desc: "水平/垂直翻转", href: "/image/flip/" },
+  { name: "图片转 PDF", desc: "多图合并为 PDF", href: "/image/topdf/" },
+  { name: "颜色选择器", desc: "HEX/RGB/HSL", href: "/image/color-picker/" },
 ];
 
 const converterTools = [
@@ -34,6 +38,12 @@ const converterTools = [
   { name: "Markdown 转 HTML", desc: "Markdown 渲染", href: "/converter/markdown-to-html/" },
   { name: "Base64 编解码", desc: "文本 Base64 转换", href: "/converter/base64/" },
   { name: "URL 编解码", desc: "URL 编码解码", href: "/converter/url-encode/" },
+  { name: "HEX ↔ RGB", desc: "颜色值互转", href: "/converter/hex-rgb/" },
+  { name: "字数统计", desc: "字符/单词/行数", href: "/converter/word-counter/" },
+  { name: "密码生成器", desc: "随机安全密码", href: "/converter/password-generator/" },
+  { name: "UUID 生成器", desc: "随机 UUID", href: "/converter/uuid-generator/" },
+  { name: "哈希生成器", desc: "SHA-1/256/512", href: "/converter/hash-generator/" },
+  { name: "Lorem Ipsum", desc: "占位文本生成", href: "/converter/lorem-ipsum/" },
 ];
 
 export default function Home() {
