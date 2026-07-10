@@ -1,55 +1,83 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #08090a;
-  --color-bg-panel: #0f1011;
-  --color-bg-surface: #191a1b;
-  --color-bg-elevated: #28282c;
-  --color-text-primary: #f7f8f8;
-  --color-text-secondary: #d0d6e0;
-  --color-text-tertiary: #8a8f98;
-  --color-text-muted: #62666d;
-  --color-accent: #5e6ad2;
-  --color-accent-bright: #7170ff;
-  --color-accent-hover: #828fff;
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-border-default: rgba(255, 255, 255, 0.08);
+  /* 宋代美学 × 徽派建筑色系 */
+  --color-bg: #f8f6f1;           /* 宣纸底色 */
+  --color-bg-warm: #f3efe8;      /* 暖纸色 */
+  --color-bg-surface: #edeae4;   /* 素面 */
+  --color-ink: #2c2c2c;          /* 浓墨 */
+  --color-ink-light: #5a5a5a;    /* 淡墨 */
+  --color-ink-faint: #9a9a9a;    /* 飞白 */
+  --color-ink-ghost: #c8c8c8;    /* 若隐 */
+  --color-accent: #6b705c;       /* 青苔绿（徽派天井苔色） */
+  --color-accent-light: #a5a58d; /* 淡苔 */
+  --color-accent-warm: #b7b7a4;  /* 暖灰绿 */
+  --color-border: #e0ddd6;       /* 素边 */
+  --color-border-light: #eae7e0; /* 淡边 */
+  --color-red: #8b4049;          /* 朱砂红（印章色） */
+  --color-gold: #a68a5a;         /* 古铜金 */
 }
 
 body {
   background: var(--color-bg);
-  color: var(--color-text-primary);
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  font-feature-settings: "cv01", "ss03";
+  color: var(--color-ink);
+  font-family: 'Noto Serif SC', 'Source Han Serif CN', 'Songti SC', 'SimSun', serif;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+/* 宣纸纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
 
-/* Animations */
+/* 确保内容在纹理之上 */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom scrollbar - 淡墨色 */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-ghost); border-radius: 2px; }
+
+/* 动画 */
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in { animation: fade-in 0.3s ease-out; }
+.animate-fade-in { animation: fade-in 0.4s ease-out; }
 
-@keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+@keyframes ink-spread {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: blur(0); }
 }
+.animate-ink { animation: ink-spread 0.6s ease-out; }
 
-/* Upload zone */
+/* 上传区域 - 素雅 */
 .upload-zone {
-  border: 1px dashed rgba(255, 255, 255, 0.08);
-  transition: all 0.15s ease;
+  border: 1px dashed var(--color-border);
+  transition: all 0.2s ease;
 }
 .upload-zone:hover,
 .upload-zone.drag-over {
-  border-color: rgba(94, 106, 210, 0.4);
-  background: rgba(94, 106, 210, 0.03);
+  border-color: var(--color-accent);
+  background: rgba(107, 112, 92, 0.03);
+}
+
+/* 水墨渐变装饰 */
+.ink-gradient {
+  background: linear-gradient(180deg, 
+    rgba(44,44,44,0.02) 0%, 
+    transparent 40%, 
+    transparent 60%, 
+    rgba(44,44,44,0.01) 100%
+  );
 }

@@ -1,89 +1,126 @@
 import Link from "next/link";
 
 const categories = [
-  { name: "PDF Tools", desc: "Merge, split, compress, convert PDFs", href: "/pdf/merge/", count: 8, color: "#5e6ad2" },
-  { name: "Image Tools", desc: "Compress, resize, convert images", href: "#", count: 0, soon: true },
-  { name: "Video Tools", desc: "Compress, convert, extract audio", href: "#", count: 0, soon: true },
-  { name: "Converters", desc: "CSV, JSON, Excel, XML conversion", href: "#", count: 0, soon: true },
-  { name: "AI Writer", desc: "Generate, rewrite, summarize text", href: "#", count: 0, soon: true },
-  { name: "More Tools", desc: "New tools added weekly", href: "#", count: 0, soon: true },
+  { name: "PDF 工具", desc: "合并、拆分、压缩、转换", href: "/pdf/merge/", count: 8 },
+  { name: "图片工具", desc: "压缩、裁剪、格式转换", href: "#", soon: true },
+  { name: "视频工具", desc: "压缩、转码、提取音频", href: "#", soon: true },
+  { name: "格式转换", desc: "CSV、JSON、Excel 互转", href: "#", soon: true },
+  { name: "AI 写作", desc: "生成、改写、摘要、翻译", href: "#", soon: true },
+  { name: "更多工具", desc: "每周更新", href: "#", soon: true },
 ];
 
 const pdfTools = [
-  { name: "Merge PDF", desc: "Combine multiple PDFs into one", href: "/pdf/merge/" },
-  { name: "Split PDF", desc: "Extract pages from a PDF", href: "/pdf/split/" },
-  { name: "Compress PDF", desc: "Reduce PDF file size", href: "/pdf/compress/" },
-  { name: "Rotate PDF", desc: "Rotate PDF pages", href: "/pdf/rotate/" },
-  { name: "Add Watermark", desc: "Add text watermark to PDF", href: "/pdf/watermark/" },
-  { name: "Protect PDF", desc: "Add password to PDF", href: "/pdf/protect/" },
-  { name: "Extract Text", desc: "Extract text from PDF", href: "/pdf/extract-text/" },
-  { name: "Page Numbers", desc: "Add page numbers to PDF", href: "/pdf/add-page-numbers/" },
+  { name: "合并 PDF", desc: "多个 PDF 合为一个", href: "/pdf/merge/" },
+  { name: "拆分 PDF", desc: "提取指定页面", href: "/pdf/split/" },
+  { name: "压缩 PDF", desc: "减小文件体积", href: "/pdf/compress/" },
+  { name: "旋转 PDF", desc: "调整页面方向", href: "/pdf/rotate/" },
+  { name: "添加水印", desc: "文字水印叠加", href: "/pdf/watermark/" },
+  { name: "PDF 加密", desc: "设置密码保护", href: "/pdf/protect/" },
+  { name: "提取文字", desc: "导出文本内容", href: "/pdf/extract-text/" },
+  { name: "页码标注", desc: "自动添加页码", href: "/pdf/add-page-numbers/" },
 ];
 
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden" style={{ paddingTop: '120px', paddingBottom: '80px' }}>
-        <div className="mx-auto max-w-[1200px] px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13px] font-medium" style={{ background: 'rgba(94,106,210,0.08)', border: '1px solid rgba(94,106,210,0.2)', color: '#7170ff' }}>
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: '#7170ff', animation: 'pulse-soft 2s ease-in-out infinite' }} />
-            200+ tools — Free forever
-          </div>
-          <h1 className="mb-5 font-medium leading-[1.0] tracking-[-1.584px]" style={{ fontSize: 'clamp(36px, 5vw, 72px)', color: '#f7f8f8' }}>
-            Free Online Tools
-            <br />
-            <span style={{ color: '#7170ff' }}>No Signup Required</span>
+      {/* 留白 Hero */}
+      <section style={{ paddingTop: '100px', paddingBottom: '80px' }}>
+        <div className="mx-auto max-w-[960px] px-6 text-center">
+          {/* 竖线装饰 */}
+          <div style={{ 
+            width: '1px', 
+            height: '40px', 
+            background: 'linear-gradient(to bottom, transparent, #9a9a9a, transparent)', 
+            margin: '0 auto 32px' 
+          }} />
+          
+          <h1 style={{ 
+            fontSize: 'clamp(28px, 4vw, 42px)', 
+            fontWeight: 300, 
+            color: '#2c2c2c',
+            lineHeight: 1.4,
+            letterSpacing: '0.15em',
+            marginBottom: '20px',
+          }}>
+            免费在线工具
           </h1>
-          <p className="mx-auto mb-10 max-w-[560px] text-[17px] leading-[1.6]" style={{ color: '#8a8f98', letterSpacing: '-0.165px' }}>
-            PDF, image, video, and AI tools. Open browser, upload file, download result. No registration, no limits, no watermarks.
+          
+          <p style={{ 
+            fontSize: '15px', 
+            color: '#9a9a9a', 
+            maxWidth: '480px', 
+            margin: '0 auto 48px',
+            lineHeight: 2,
+            letterSpacing: '0.05em',
+          }}>
+            无需注册，无限使用
+            <br />
+            PDF · 图片 · 视频 · 格式转换
           </p>
-          <div className="mx-auto max-w-[420px]">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search tools..."
-                className="w-full rounded-lg px-4 py-3 text-[15px] outline-none"
-                style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  color: '#f7f8f8',
-                }}
-              />
-              <svg className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2" style={{ color: '#62666d' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
+
+          {/* 搜索框 */}
+          <div className="mx-auto max-w-[400px]">
+            <input
+              type="text"
+              placeholder="搜索工具..."
+              style={{
+                width: '100%',
+                padding: '10px 16px',
+                fontSize: '14px',
+                background: 'transparent',
+                border: '1px solid #e0ddd6',
+                color: '#2c2c2c',
+                outline: 'none',
+                letterSpacing: '0.05em',
+              }}
+            />
           </div>
+
+          {/* 竖线装饰 */}
+          <div style={{ 
+            width: '1px', 
+            height: '40px', 
+            background: 'linear-gradient(to bottom, transparent, #c8c8c8, transparent)', 
+            margin: '48px auto 0' 
+          }} />
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="mx-auto max-w-[1200px] px-6" style={{ paddingBottom: '80px' }}>
-        <h2 className="mb-8 text-[20px] font-medium tracking-[-0.24px]" style={{ color: '#f7f8f8' }}>Tool Categories</h2>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {/* 工具分类 */}
+      <section className="mx-auto max-w-[960px] px-6" style={{ paddingBottom: '80px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <span style={{ fontSize: '12px', color: '#9a9a9a', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            工具分类
+          </span>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat) => (
             <Link
               key={cat.name}
               href={cat.href}
-              className="group relative rounded-lg p-5 transition-colors"
               style={{
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.05)',
-                pointerEvents: cat.soon ? 'none' : 'auto',
-                opacity: cat.soon ? 0.5 : 1,
+                display: 'block',
+                padding: '24px',
+                border: '1px solid #e0ddd6',
                 textDecoration: 'none',
+                transition: 'all 0.2s',
+                opacity: cat.soon ? 0.4 : 1,
+                pointerEvents: cat.soon ? 'none' : 'auto',
               }}
             >
-              <div className="flex items-start justify-between">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>
-                  <h3 className="text-[15px] font-medium" style={{ color: '#f7f8f8', letterSpacing: '-0.165px' }}>{cat.name}</h3>
-                  <p className="mt-1 text-[13px]" style={{ color: '#8a8f98' }}>{cat.desc}</p>
+                  <h3 style={{ fontSize: '15px', fontWeight: 500, color: '#2c2c2c', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                    {cat.name}
+                  </h3>
+                  <p style={{ fontSize: '13px', color: '#9a9a9a', letterSpacing: '0.03em' }}>
+                    {cat.desc}
+                  </p>
                 </div>
                 {cat.soon ? (
-                  <span className="rounded-full px-2 py-0.5 text-[11px] font-medium" style={{ background: 'rgba(255,255,255,0.05)', color: '#62666d', border: '1px solid rgba(255,255,255,0.05)' }}>Soon</span>
+                  <span style={{ fontSize: '11px', color: '#c8c8c8', letterSpacing: '0.05em' }}>即将</span>
                 ) : (
-                  <span className="rounded-full px-2 py-0.5 text-[11px] font-medium" style={{ background: 'rgba(94,106,210,0.1)', color: '#7170ff' }}>{cat.count} tools</span>
+                  <span style={{ fontSize: '11px', color: '#6b705c', letterSpacing: '0.05em' }}>{cat.count} 项</span>
                 )}
               </div>
             </Link>
@@ -91,45 +128,74 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PDF Tools */}
-      <section className="mx-auto max-w-[1200px] px-6" style={{ paddingBottom: '80px' }}>
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-[20px] font-medium tracking-[-0.24px]" style={{ color: '#f7f8f8' }}>PDF Tools</h2>
-          <Link href="/pdf/merge/" className="text-[13px] font-medium" style={{ color: '#7170ff', textDecoration: 'none' }}>View all →</Link>
+      {/* PDF 工具 */}
+      <section className="mx-auto max-w-[960px] px-6" style={{ paddingBottom: '80px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+          <span style={{ fontSize: '12px', color: '#9a9a9a', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            PDF 工具
+          </span>
+          <Link href="/pdf/merge/" style={{ fontSize: '13px', color: '#6b705c', textDecoration: 'none', letterSpacing: '0.05em' }}>
+            查看全部 →
+          </Link>
         </div>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {pdfTools.map((tool) => (
             <Link
               key={tool.name}
               href={tool.href}
-              className="group flex items-center gap-3 rounded-lg px-4 py-3 transition-colors"
-              style={{ textDecoration: 'none', border: '1px solid transparent' }}
+              style={{
+                display: 'block',
+                padding: '16px 20px',
+                border: '1px solid transparent',
+                borderBottom: '1px solid #eae7e0',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+              }}
             >
-              <div>
-                <h3 className="text-[14px] font-medium transition-colors" style={{ color: '#d0d6e0', letterSpacing: '-0.13px' }}>{tool.name}</h3>
-                <p className="text-[12px]" style={{ color: '#62666d' }}>{tool.desc}</p>
-              </div>
+              <h3 style={{ fontSize: '14px', fontWeight: 500, color: '#2c2c2c', letterSpacing: '0.05em', marginBottom: '4px' }}>
+                {tool.name}
+              </h3>
+              <p style={{ fontSize: '12px', color: '#9a9a9a' }}>
+                {tool.desc}
+              </p>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="mx-auto max-w-[1200px] px-6" style={{ paddingBottom: '120px' }}>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 特性 */}
+      <section className="mx-auto max-w-[960px] px-6" style={{ paddingBottom: '60px' }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(4, 1fr)', 
+          gap: '1px',
+          background: '#e0ddd6',
+          border: '1px solid #e0ddd6',
+        }}>
           {[
-            { title: "100% Free", desc: "No hidden fees, no freemium tricks" },
-            { title: "No Signup", desc: "Start using tools immediately" },
-            { title: "Private", desc: "Files processed in your browser" },
-            { title: "Fast", desc: "Instant processing, no waiting" },
+            { title: "完全免费", desc: "无隐藏收费" },
+            { title: "无需注册", desc: "即开即用" },
+            { title: "本地处理", desc: "文件不上传" },
+            { title: "无限使用", desc: "无次数限制" },
           ].map((f) => (
-            <div key={f.title} className="rounded-lg p-5" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <h3 className="text-[14px] font-medium" style={{ color: '#f7f8f8' }}>{f.title}</h3>
-              <p className="mt-1 text-[13px]" style={{ color: '#8a8f98' }}>{f.desc}</p>
+            <div key={f.title} style={{ padding: '28px 20px', background: '#f8f6f1', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '14px', fontWeight: 500, color: '#2c2c2c', letterSpacing: '0.08em', marginBottom: '8px' }}>
+                {f.title}
+              </h3>
+              <p style={{ fontSize: '12px', color: '#9a9a9a', letterSpacing: '0.03em' }}>
+                {f.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
+
+      {/* 底部留白装饰 */}
+      <div style={{ textAlign: 'center', paddingBottom: '40px' }}>
+        <span style={{ fontSize: '20px', color: '#e0ddd6', letterSpacing: '0.5em' }}>
+          · · ·
+        </span>
+      </div>
     </div>
   );
 }

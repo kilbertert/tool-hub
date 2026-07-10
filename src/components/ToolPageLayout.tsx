@@ -8,65 +8,85 @@ interface Props {
   title: string;
   description: string;
   breadcrumbs: Breadcrumb[];
-  icon: string;
   children: ReactNode;
-  relatedTools?: { name: string; href: string; icon: string }[];
+  relatedTools?: { name: string; href: string }[];
   seoContent?: ReactNode;
 }
 
 export default function ToolPageLayout({
-  title, description, breadcrumbs, icon, children, relatedTools, seoContent,
+  title, description, breadcrumbs, children, relatedTools, seoContent,
 }: Props) {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
-      {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-sm text-zinc-500">
-        <Link href="/" className="hover:text-zinc-300">Home</Link>
+    <div className="mx-auto max-w-[960px] px-6 py-10">
+      {/* 面包屑 */}
+      <nav className="mb-8 flex items-center gap-2" style={{ fontSize: '12px', color: '#9a9a9a', letterSpacing: '0.05em' }}>
+        <Link href="/" style={{ color: '#9a9a9a', textDecoration: 'none' }}>首页</Link>
         {breadcrumbs.map((b, i) => (
           <span key={i} className="flex items-center gap-2">
-            <span>/</span>
-            {b.href ? <Link href={b.href} className="hover:text-zinc-300">{b.label}</Link> : <span className="text-zinc-300">{b.label}</span>}
+            <span style={{ color: '#e0ddd6' }}>/</span>
+            {b.href ? <Link href={b.href} style={{ color: '#9a9a9a', textDecoration: 'none' }}>{b.label}</Link> : <span style={{ color: '#5a5a5a' }}>{b.label}</span>}
           </span>
         ))}
       </nav>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-        {/* Main content */}
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-4">
+        {/* 主内容 */}
         <div className="lg:col-span-3">
-          {/* Header */}
+          {/* 标题 */}
           <div className="mb-8">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">{icon}</span>
-              <div>
-                <h1 className="text-3xl font-bold">{title}</h1>
-                <p className="mt-1 text-zinc-400">{description}</p>
-              </div>
-            </div>
+            <h1 style={{ 
+              fontSize: '28px', 
+              fontWeight: 300, 
+              color: '#2c2c2c',
+              letterSpacing: '0.1em',
+              marginBottom: '8px',
+            }}>
+              {title}
+            </h1>
+            <p style={{ fontSize: '14px', color: '#9a9a9a', letterSpacing: '0.03em' }}>
+              {description}
+            </p>
+            {/* 分隔线 */}
+            <div style={{ 
+              width: '24px', 
+              height: '1px', 
+              background: '#6b705c', 
+              marginTop: '16px' 
+            }} />
           </div>
 
-          {/* Tool area */}
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+          {/* 工具区域 */}
+          <div style={{ 
+            border: '1px solid #e0ddd6',
+            padding: '32px',
+            background: 'rgba(248,246,241,0.5)',
+          }}>
             {children}
           </div>
 
-          {/* SEO content */}
+          {/* SEO 内容 */}
           {seoContent && (
-            <div className="mt-12 rounded-2xl border border-white/5 bg-white/[0.02] p-8">
+            <div style={{ 
+              marginTop: '60px',
+              paddingTop: '40px',
+              borderTop: '1px solid #eae7e0',
+            }}>
               {seoContent}
             </div>
           )}
         </div>
 
-        {/* Sidebar */}
-        <aside className="space-y-6">
-          {/* Related tools */}
+        {/* 侧边栏 */}
+        <aside style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* 相关工具 */}
           {relatedTools && relatedTools.length > 0 && (
-            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-              <h3 className="mb-4 text-sm font-semibold text-zinc-300">Related Tools</h3>
-              <div className="flex flex-col gap-2">
+            <div style={{ borderLeft: '1px solid #e0ddd6', paddingLeft: '20px' }}>
+              <h3 style={{ fontSize: '12px', color: '#9a9a9a', letterSpacing: '0.15em', marginBottom: '16px', fontWeight: 400 }}>
+                相关工具
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {relatedTools.map((tool) => (
-                  <Link key={tool.name} href={tool.href} className="flex items-center gap-3 rounded-lg p-2 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white">
-                    <span>{tool.icon}</span>
+                  <Link key={tool.name} href={tool.href} style={{ fontSize: '13px', color: '#5a5a5a', textDecoration: 'none', letterSpacing: '0.03em' }}>
                     {tool.name}
                   </Link>
                 ))}
@@ -74,14 +94,16 @@ export default function ToolPageLayout({
             </div>
           )}
 
-          {/* Info card */}
-          <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-            <h3 className="mb-3 text-sm font-semibold text-zinc-300">Why ToolHub?</h3>
-            <div className="space-y-3 text-sm text-zinc-500">
-              <p>✓ 100% free, no limits</p>
-              <p>✓ No signup required</p>
-              <p>✓ Files stay in your browser</p>
-              <p>✓ No watermarks added</p>
+          {/* 说明 */}
+          <div style={{ borderLeft: '1px solid #e0ddd6', paddingLeft: '20px' }}>
+            <h3 style={{ fontSize: '12px', color: '#9a9a9a', letterSpacing: '0.15em', marginBottom: '16px', fontWeight: 400 }}>
+              关于此工具
+            </h3>
+            <div style={{ fontSize: '13px', color: '#9a9a9a', lineHeight: 2 }}>
+              <p>✓ 完全免费</p>
+              <p>✓ 无需注册</p>
+              <p>✓ 文件本地处理</p>
+              <p>✓ 无水印</p>
             </div>
           </div>
         </aside>
